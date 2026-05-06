@@ -1,6 +1,5 @@
 plugins {
     `maven-publish`
-    signing
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
@@ -33,8 +32,6 @@ java {
     disableAutoTargetJvm()
 }
 mavenPublishing {
-    publishToMavenCentral()
-
     pom {
         name.set("Triumph GUI")
         description.set("Library for easy creation of GUIs for Bukkit plugins.")
