@@ -1,6 +1,6 @@
 plugins {
     id("java-library")
-    id("com.github.hierynomus.license") version "0.16.1"
+    //id("com.github.hierynomus.license") version "0.16.1"
 }
 
 allprojects {
@@ -17,9 +17,9 @@ subprojects {
 
     apply {
         plugin("java-library")
-        plugin("com.github.hierynomus.license")
+        //plugin("com.github.hierynomus.license")
     }
 
     group = "dev.triumphteam"
-    version = "3.1.14-SNAPSHOT"
+    version = "3.1.5"
 }

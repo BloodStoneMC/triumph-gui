@@ -18,12 +18,12 @@ dependencies {
     }
 }
 
-license {
-    header = rootProject.file("LICENSE")
-    encoding = "UTF-8"
-    mapping("java", "JAVADOC_STYLE")
-    include("**/*.java")
-}
+//license {
+//    header = rootProject.file("LICENSE")
+//    encoding = "UTF-8"
+//    mapping("java", "JAVADOC_STYLE")
+//    include("**/*.java")
+//}
 
 val javaComponent: SoftwareComponent = components["java"]
 

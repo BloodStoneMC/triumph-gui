@@ -1,3 +1,6 @@
+import org.gradle.api.credentials.PasswordCredentials
+import org.gradle.authentication.http.BasicAuthentication
+
 plugins {
     `maven-publish`
     signing
@@ -22,12 +25,12 @@ dependencies {
     api("net.kyori:adventure-platform-bukkit:4.4.1")
 }
 
-license {
-    header = rootProject.file("LICENSE")
-    encoding = "UTF-8"
-    mapping("java", "JAVADOC_STYLE")
-    include("**/*.java")
-}
+//license {
+//    header = rootProject.file("LICENSE")
+//    encoding = "UTF-8"
+//    mapping("java", "JAVADOC_STYLE")
+//    include("**/*.java")
+//}
 
 val javaComponent: SoftwareComponent = components["java"]
 
@@ -39,14 +42,23 @@ java {
 publishing {
     repositories {
         maven {
-            name = "triumph"
-            credentials {
-                username = providers.gradleProperty("triumph.repo.user").get()
-                password = providers.gradleProperty("triumph.repo.token").get()
+            name = "bloodstoneRepositoryPrivate"
+            url = uri("https://repo.bloodstone.boo/private")
+            credentials(PasswordCredentials::class)
+            authentication {
+                create<BasicAuthentication>("basic")
             }
-
-            url = uri("https://repo.triumphteam.dev/snapshots/")
         }
+
+        //maven {
+        //    name = "triumph"
+        //    credentials {
+        //        username = providers.gradleProperty("triumph.repo.user").get()
+        //        password = providers.gradleProperty("triumph.repo.token").get()
+        //    }
+//
+        //    url = uri("https://repo.triumphteam.dev/snapshots/")
+        //}
 
         // more repositories can go here
     }
@@ -60,12 +72,12 @@ mavenPublishing {
         name.set("Triumph GUI")
         description.set("Library for easy creation of GUIs for Bukkit plugins.")
         url.set("https://github.com/TriumphTeam/triumph-gui")
-        licenses {
-            license {
-                name.set("MIT License")
-                url.set("http://www.opensource.org/licenses/mit-license.php")
-            }
-        }
+//        licenses {
+//            license {
+//                name.set("MIT License")
+//                url.set("http://www.opensource.org/licenses/mit-license.php")
+//            }
+//        }
         developers {
             developer {
                 id.set("matt")
