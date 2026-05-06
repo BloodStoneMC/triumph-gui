@@ -34,7 +34,6 @@ java {
 }
 mavenPublishing {
     publishToMavenCentral()
-    signAllPublications()
 
     pom {
         name.set("Triumph GUI")
