@@ -32,6 +32,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -155,6 +156,25 @@ public final class GuiListener implements Listener {
 
         // Checks if there is or not an action set and executes it
         if (openAction != null && !gui.isUpdating()) openAction.execute(event);
+    }
+
+    /**
+     * Handles what happens when anvil gui is changed
+     *
+     * @param event The PrepareAnvilEvent
+     */
+    @EventHandler
+    public void onTextChange(final PrepareAnvilEvent event) {
+        if (!(event.getInventory().getHolder() instanceof AnvilGui)) return;
+
+        // GUI
+        final AnvilGui gui = (AnvilGui) event.getInventory().getHolder();
+
+        // The GUI action for preparing anvil action
+        final GuiAction<PrepareAnvilEvent> prepareAnvilAction = gui.getPrepareAnvilAction();
+
+        // Checks if there is or not an action set and executes it
+        if (prepareAnvilAction != null && !gui.isUpdating()) prepareAnvilAction.execute(event);
     }
 
     /**

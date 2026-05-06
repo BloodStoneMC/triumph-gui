@@ -23,6 +23,7 @@
  */
 package dev.triumphteam.gui.guis;
 
+import dev.triumphteam.gui.builder.gui.AnvilGuiBuilder;
 import dev.triumphteam.gui.builder.gui.PaginatedBuilder;
 import dev.triumphteam.gui.builder.gui.ScrollingBuilder;
 import dev.triumphteam.gui.builder.gui.ChestGuiBuilder;
@@ -113,4 +114,13 @@ public class Gui extends BaseGui {
     public static @NotNull ScrollingBuilder scrolling() {
         return scrolling(ScrollType.VERTICAL);
     }
+
+    /**
+     * Creates a {@link AnvilGuiBuilder}
+     *
+     * @return A {@link AnvilGuiBuilder}
+     * @since 3.1.5
+     */
+    @Contract(" -> new")
+    public static @NotNull AnvilGuiBuilder anvil() { return new AnvilGuiBuilder();}
 }

@@ -32,7 +32,8 @@ public enum GuiType {
     WORKBENCH(InventoryType.WORKBENCH, 9, 10),
     HOPPER(InventoryType.HOPPER, 5, 5),
     DISPENSER(InventoryType.DISPENSER, 8, 9),
-    BREWING(InventoryType.BREWING, 4, 5);
+    BREWING(InventoryType.BREWING, 4, 5),
+    ANVIL(InventoryType.ANVIL, 2, 3);
 
     @NotNull
     private final InventoryType inventoryType;
