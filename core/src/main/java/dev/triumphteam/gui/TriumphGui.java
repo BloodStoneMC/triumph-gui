@@ -23,7 +23,10 @@
  */
 package dev.triumphteam.gui;
 
+import dev.triumphteam.gui.components.InventoryProvider;
+import dev.triumphteam.gui.components.util.Legacy;
 import dev.triumphteam.gui.guis.BaseGui;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -32,6 +35,10 @@ public final class TriumphGui {
 
     // The plugin instance for registering the event and for the close delay.
     private static Plugin PLUGIN = null;
+    private static InventoryProvider.Chest CHEST_INVENTORY_PROVIDER =
+        (title, owner, size) -> Bukkit.createInventory(owner, size, Legacy.SERIALIZER.serialize(title));
+    private static InventoryProvider.Typed TYPED_INVENTORY_PROVIDER =
+        (title, owner, type) -> Bukkit.createInventory(owner, type, Legacy.SERIALIZER.serialize(title));
 
     private TriumphGui() {}
 
@@ -39,8 +46,24 @@ public final class TriumphGui {
         PLUGIN = plugin;
     }
 
+    public static void inventoryProviders(
+        final @NotNull InventoryProvider.Chest chestInventoryProvider,
+        final @NotNull InventoryProvider.Typed typedInventoryProvider
+    ) {
+        CHEST_INVENTORY_PROVIDER = chestInventoryProvider;
+        TYPED_INVENTORY_PROVIDER = typedInventoryProvider;
+    }
+
     public static @NotNull Plugin getPlugin() {
         if (PLUGIN == null) init(JavaPlugin.getProvidingPlugin(BaseGui.class));
         return PLUGIN;
+    }
+
+    public static @NotNull InventoryProvider.Chest getChestInventoryProvider() {
+        return CHEST_INVENTORY_PROVIDER;
+    }
+
+    public static @NotNull InventoryProvider.Typed getTypedInventoryProvider() {
+        return TYPED_INVENTORY_PROVIDER;
     }
 }

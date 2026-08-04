@@ -23,11 +23,10 @@
  */
 package dev.triumphteam.gui.builder.gui;
 
+import dev.triumphteam.gui.TriumphGui;
 import dev.triumphteam.gui.components.GuiContainer;
 import dev.triumphteam.gui.components.InventoryProvider;
-import dev.triumphteam.gui.components.util.Legacy;
 import dev.triumphteam.gui.guis.BaseGui;
-import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,8 +34,7 @@ import org.jetbrains.annotations.NotNull;
 public abstract class BaseChestGuiBuilder<G extends BaseGui, B extends BaseChestGuiBuilder<G, B>> extends BaseGuiBuilder<G, B> {
 
     private int rows = 1;
-    private InventoryProvider.Chest inventoryProvider =
-            (title, owner, rows) -> Bukkit.createInventory(owner, rows, Legacy.SERIALIZER.serialize(title));
+    private InventoryProvider.Chest inventoryProvider = TriumphGui.getChestInventoryProvider();
 
     /**
      * Sets the rows for the GUI

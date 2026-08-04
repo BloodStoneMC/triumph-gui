@@ -23,12 +23,11 @@
  */
 package dev.triumphteam.gui.builder.gui;
 
+import dev.triumphteam.gui.TriumphGui;
 import dev.triumphteam.gui.components.GuiContainer;
 import dev.triumphteam.gui.components.GuiType;
 import dev.triumphteam.gui.components.InventoryProvider;
-import dev.triumphteam.gui.components.util.Legacy;
 import dev.triumphteam.gui.guis.Gui;
-import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,8 +39,7 @@ import java.util.function.Consumer;
 public final class TypedGuiBuilder extends BaseGuiBuilder<Gui, TypedGuiBuilder> {
 
     private GuiType guiType;
-    private InventoryProvider.Typed inventoryProvider =
-        (title, owner, type) -> Bukkit.createInventory(owner, type, Legacy.SERIALIZER.serialize(title));
+    private InventoryProvider.Typed inventoryProvider = TriumphGui.getTypedInventoryProvider();
 
     /**
      * Main constructor
